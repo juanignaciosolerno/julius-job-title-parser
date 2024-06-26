@@ -37,7 +37,6 @@ def parse_job_title():
 
 
     # PRE-PROCESS DATA
-    
     job_titles_splitted = []                # RESPONSE key 1: job titles splitted as they enter to the model
     for sentence in job_titles[:]:
         if not isinstance(sentence, str):
@@ -80,6 +79,7 @@ def parse_job_title():
         logits = outputs.logits
         active_logits = logits.view(-1, model.num_labels) 
         flattened_predictions = torch.argmax(active_logits, axis=1) # get the most confident label
+        
         token_predictions = [ids_to_labels[i] for i in flattened_predictions.cpu().numpy()] 
         wp_preds = list(zip(tokens, token_predictions)) # this includes preds for padding
 
