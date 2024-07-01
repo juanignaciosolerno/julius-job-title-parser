@@ -34,7 +34,7 @@ def parse_job_title():
     if not data:
         return jsonify({'error': 'No data provided'}), 400
     job_titles = data.get('jobTitles')      # RESPONSE key 0: original job titles
-
+    ids = data.get('ids')
 
     # PRE-PROCESS DATA
     job_titles_splitted = []                # RESPONSE key 1: job titles splitted as they enter to the model
@@ -101,6 +101,7 @@ def parse_job_title():
 
     # BUILD RESPONSE OBJECT 
     response_data = {
+        'ids': ids,
         'job_titles': job_titles,
         'job_titles_splitted': job_titles_splitted,
         'job_titles_tokenized': job_titles_tokenized,
